@@ -66,7 +66,7 @@ function addScheduledTest (subject, method, m, d) {
 }
 // List of tests
 
-addScheduledTest("영어 | 국제반 한정?", "스피킹 제출", 5, 29)
+addScheduledTest("영어 | 원어민 과제", "Final Draft", 5, 29)
 addScheduledTest("사회 | 1~4단원", "서술형 평가", 5, 31);
 addScheduledTest("영어 | Day 13~16, 단답형", "어휘 평가", 6, 2);
 addScheduledTest("과학 | ~3단원", "서술형 평가", 6, 3);
