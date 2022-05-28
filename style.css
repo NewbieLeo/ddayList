@@ -1,0 +1,78 @@
+.title {
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 5vw;
+    text-align: center;
+    margin: 6vw 0 2vw 0;
+}
+
+.subtitle {
+    font-family: Pretendard;
+    font-weight: 500;
+    font-size: 2.5vw;
+    text-align: center;
+    margin: 1vw 0 2vw 0;
+}
+
+.schedule {
+    font-family: Pretendard;
+}
+.type {
+    border-style: solid;
+    border-color: lightgray;
+    border-radius: 1.5vw;
+    border-width: .5vw;
+    /* width: 180px; */
+    width: 50vw;
+    padding: 0 0 0 2vw;
+    margin: 0 4vw 0 4vw;
+    float: left;
+}
+.date {
+    border-style: solid;
+    border-color: lightgray;
+    border-radius: 1.5vw;
+    border-width: .5vw;
+    width: 26vw;
+    align-self: center;
+    float: left;
+}
+
+.subject {
+    font-size: 3vw;
+    margin: .5vh 0 0 0;
+}
+
+.name {
+    font-size: 6vw;
+    font-weight: 600;
+    margin: .5vh 0 0.5vh 0;
+}
+
+.day {
+    text-align: center;
+    font-size: 3vw;
+    margin: .5vh 0 0 0;
+}
+
+.d_day {
+    text-align: center;
+    font-size: 6vw;
+    margin: .5vh 0 .5vh 0;
+}
+
+.sep {
+    height: 4vw;
+    clear: both;
+}
+
+.nothing {
+    color: crimson;
+}
+
+.info {
+    font-family: Pretendard;
+    font-size: 2vw;
+    font-weight: 400;
+    text-align: center;
+}
