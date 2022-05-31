@@ -1,7 +1,7 @@
 let scheduledArea = document.querySelector(".scheduled");
 let dateObject = new Date();
-let month = dateObject.getMonth() + 1;
-let day = dateObject.getDate();
+let currentMonth = dateObject.getMonth() + 1;
+let currentDay = dateObject.getDate();
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 
 function addScheduledTest (subject, method, m, d) {
@@ -36,7 +36,7 @@ function addScheduledTest (subject, method, m, d) {
     $name.innerHTML = method;
     
     // Calcs remaining days
-    today = new Date(`2022-${month}-${day}, 00:00:00 +0900`)
+    today = new Date(`2022-${currentMonth}-${currentDay}, 00:00:00 +0900`)
     testDate = new Date(`2022-${m}-${d}, 00:00:00 +0900`)
     leftDays = ((testDate - today) / 86400000).toFixed();
     $day.innerHTML = `${m}/${d} (${weekDays[testDate.getDay()]})`
@@ -64,17 +64,20 @@ function addScheduledTest (subject, method, m, d) {
     }
     
 }
-// List of tests
 
-addScheduledTest("영어 | 국제반 한정?", "스피킹 제출", 5, 29)
-addScheduledTest("사회 | 1~4단원", "서술형 평가", 5, 31);
-addScheduledTest("영어 | Day 13~16, 단답형", "어휘 평가", 6, 2);
-addScheduledTest("과학 | ~3단원", "서술형 평가", 6, 3);
-addScheduledTest("중국어", "서술형 평가", 6, 7);
-addScheduledTest("수학 | ~91쪽", "서술형 평가", 6, 9);
-addScheduledTest("역사", "발표 수행평가", 6, 13);
-// Date not confirmed
-addScheduledTest("국어", "구술 평가");
-addScheduledTest("사회", "수행평가");
-addScheduledTest("중국어", "구술 평가");
-addScheduledTest("기술가정", "서술형 평가");
+testList = [
+    ["영어 | Day 13~16, 단답형", "어휘 평가", 6, 2],
+    ["과학 | ~3단원", "서술형 평가", 6, 3],
+    ["국어", "구술평가", 6, 7],
+    ["중국어", "서술형 평가", 6, 7],
+    ["사회 | 1~3단원", "서술형 평가", 6, 7],
+    ["기술·가정", "서술형 평가", 6, 8],
+    ["수학 | ~91쪽", "서술형 평가", 6, 9],
+    ["역사", "발표 수행평가", 6, 13],
+    ["사회", "수행 평가"],
+    ["중국어", "구술 평가"]
+];
+
+testList.forEach(([subject, test, month, day]) => {
+    addScheduledTest(subject, test, month, day);
+})
