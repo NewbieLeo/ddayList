@@ -65,6 +65,7 @@ function addScheduledTest (subject, method, m, d) {
     
 }
 
+
 testList = [
     ["영어 | Day 13~16, 단답형", "어휘 평가", 6, 2],
     ["과학 | ~3단원", "서술형 평가", 6, 3],
@@ -81,17 +82,3 @@ testList = [
 testList.forEach(([subject, test, month, day]) => {
     addScheduledTest(subject, test, month, day);
 })
-
-addScheduledTest("영어 | 원어민 과제", "Final Draft", 5, 29)
-addScheduledTest("사회 | 1~4단원", "서술형 평가");
-addScheduledTest("영어 | Day 13~16, 단답형", "어휘 평가", 6, 2);
-addScheduledTest("과학 | ~3단원", "서술형 평가", 6, 3);
-addScheduledTest("중국어", "서술형 평가", 6, 7);
-addScheduledTest("수학 | ~91쪽", "서술형 평가", 6, 9);
-addScheduledTest("역사", "발표 수행평가", 6, 13);
-// Date not confirmed
-addScheduledTest("국어", "구술 평가");
-addScheduledTest("사회", "수행평가");
-addScheduledTest("사회 | 1~4단원", "서술형 평가");
-addScheduledTest("중국어", "구술 평가");
-addScheduledTest("기술가정", "서술형 평가");
