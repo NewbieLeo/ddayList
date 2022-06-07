@@ -67,17 +67,14 @@ function addScheduledTest (subject, method, m, d) {
 
 
 testList = [
-    ["영어 | Day 13~16, 단답형", "어휘 평가", 6, 2],
-    ["과학 | ~3단원", "서술형 평가", 6, 3],
-    ["국어", "구술평가", 6, 7],
-    ["중국어", "서술형 평가", 6, 7],
-    ["사회 | 1~3단원", "서술형 평가", 6, 7],
-    ["기술·가정", "서술형 평가", 6, 8],
     ["수학 | ~91쪽", "서술형 평가", 6, 9],
     ["역사", "발표 수행평가", 6, 13],
-    ["사회", "수행 평가"],
+    ["기술·가정", "서술형 평가", 6, 15],
+    ["사회", "수행 평가",],
     ["중국어", "구술 평가"]
 ];
+
+document.querySelector(".left").innerHTML = `예정된 수행평가가 ${testList.length}개 남았습니다.`
 
 testList.forEach(([subject, test, month, day]) => {
     addScheduledTest(subject, test, month, day);
