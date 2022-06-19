@@ -3,6 +3,9 @@
     font-weight: 500;
     font-size: 5vw;
     text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
     margin: 6vw 0 2vw 0;
 }
 
@@ -11,6 +14,9 @@
     font-weight: 500;
     font-size: 2.5vw;
     text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
     margin: 1vw 0 2vw 0;
 }
 
@@ -75,4 +81,18 @@
     font-size: 2vw;
     font-weight: 400;
     text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+}
+
+.done {
+    font-family: Pretendard;
+    font-size: 3vw;
+    font-weight: 400;
+    text-align: center;
+    position: relative;
+    left: 48%;
+    transform: translate(-50%, 0);
 }
