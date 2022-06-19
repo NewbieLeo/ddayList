@@ -1,7 +1,7 @@
 let scheduledArea = document.querySelector(".scheduled");
 let dateObject = new Date();
-let month = dateObject.getMonth() + 1;
-let day = dateObject.getDate();
+let currentMonth = dateObject.getMonth() + 1;
+let currentDay = dateObject.getDate();
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 
 function addScheduledTest (subject, method, m, d) {
@@ -36,7 +36,7 @@ function addScheduledTest (subject, method, m, d) {
     $name.innerHTML = method;
     
     // Calcs remaining days
-    today = new Date(`2022-${month}-${day}, 00:00:00 +0900`)
+    today = new Date(`2022-${currentMonth}-${currentDay}, 00:00:00 +0900`)
     testDate = new Date(`2022-${m}-${d}, 00:00:00 +0900`)
     leftDays = ((testDate - today) / 86400000).toFixed();
     $day.innerHTML = `${m}/${d} (${weekDays[testDate.getDay()]})`
@@ -65,3 +65,13 @@ function addScheduledTest (subject, method, m, d) {
     
 }
 // List of tests: All tests Done
+
+testList = [
+];
+
+// document.querySelector(".left").innerHTML = `예정된 수행평가가 ${testList.length}개 남았습니다.`
+
+testList.forEach(([subject, test, month, day]) => {
+    addScheduledTest(subject, test, month, day);
+})
+
