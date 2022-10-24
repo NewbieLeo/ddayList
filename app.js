@@ -69,8 +69,7 @@ function addScheduledTest (subject, method, m, d) {
     
 }
 
-
-testList = [
+/* testList = [
     ["수학 | ~91쪽", "서술형 평가", 6, 9],
     ["역사", "발표 수행평가", 6, 13],
     ["기술·가정", "서술형 평가", 6, 15],
@@ -78,7 +77,7 @@ testList = [
     ["중국어", "구술 평가"]
 ];
 
-document.querySelector(".left").innerHTML = `예정된 수행평가가 ${testList.length}개 남았습니다.`
+document.querySelector(".left").innerHTML = `예정된 수행평가가 ${testList.length}개 남았습니다.` */
 
 /* testList.forEach(([subject, test, month, day]) => {
     addScheduledTest(subject, test, month, day);
@@ -104,10 +103,17 @@ function DBget() {
 }
 
 window.onload = function() {
-    
+    let loadTime = new Date().getTime();
+    let load = setInterval(() => {
+        loadedTime = (new Date().getTime() - loadTime) / 1000
+        document.querySelector('.wait-time').value = -.1 * loadedTime * (loadedTime - 14); // quadretic animation
+    }, 25);
+
     setTimeout(() => {
+        document.querySelector('.body').hidden = false;
         DBget();
-    }, 1000);
+        console.log('level 1');
+    }, 100);
 
     setTimeout(() => {
         console.log(dataBox)
@@ -117,5 +123,9 @@ window.onload = function() {
                 addScheduledTest(a[event].subject, a[event].type, a[event].date.split('-')[1], a[event].date.split('-')[2])
             }
         }
-    }, 2000);
+        clearInterval(load);
+        document.querySelector('.waiting').hidden = true;
+        document.querySelector('.body:not(.waiting)').hidden = false;
+        console.log('level 2');
+    }, 4000);
 }

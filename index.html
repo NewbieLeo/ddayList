@@ -4,22 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영남삼육중학교 3-2 수행평가 D-Day 리스트</title>
+    <title>영남삼육중 3-2 수행평가 TO-DO (Beta)</title>
     <link rel="icon" href="titleIcon.png"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <script defer src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
-
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    
     <script defer src="app.js"></script>
 </head>
 <body>
-    <p class="title">수행평가 목록</p>
-    <p class="left"></p>
-    <div class="scheduled">
-        <!-- Here will be schedules-->
+    <div class="body">
+        <script>document.querySelector('.body').hidden = true;</script>
+        <p class="title">수행평가 목록</p>
+        <div class="waiting">
+            <p>데이터를 받아오는 중입니다.</p>
+            <p>잠시 기다려 주세요.</p>
+            <progress class="wait-time" max="4" value="0"></progress>
+        </div>
+        <p class="left"></p>
+        <div class="scheduled">
+            <!-- Here will be schedules-->
+        </div>
+        <pre class="info" hidden>
+문제 제보: jogangmin07@gmail.com
+Hosting by <a anchor="_blank" href="netlify.com">Netlify</a>, <a anchor="_blank" href="github.com">Github</a>
+Database Server from Firebase by Google Inc.</pre>
     </div>
-    <pre class="info">
-오류 제보: jogangmin07@gmail.com</pre>
+    
 </body>
 </html>
