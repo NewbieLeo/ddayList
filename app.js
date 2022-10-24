@@ -1,3 +1,7 @@
+
+// Import the functions you need from the SDKs you need
+
+
 let scheduledArea = document.querySelector(".scheduled");
 let dateObject = new Date();
 let currentMonth = dateObject.getMonth() + 1;
@@ -76,6 +80,42 @@ testList = [
 
 document.querySelector(".left").innerHTML = `예정된 수행평가가 ${testList.length}개 남았습니다.`
 
-testList.forEach(([subject, test, month, day]) => {
+/* testList.forEach(([subject, test, month, day]) => {
     addScheduledTest(subject, test, month, day);
-})
+}) */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAEuYaMf87Pq_196a2mmrFEYDhbuRbnCaA",
+    authDomain: "sahmyook-event.firebaseapp.com",
+    projectId: "sahmyook-event",
+    storageBucket: "sahmyook-event.appspot.com",
+    messagingSenderId: "29381676933",
+    appId: "1:29381676933:web:97532619c6bad4497cfeec",
+    measurementId: "G-6DTXJK77XS"
+};
+firebase.initializeApp(firebaseConfig);
+
+var dataBox = [];
+function DBget() {
+    const db = firebase.firestore();
+    db.collection('data').get().then(
+        e => { e.forEach(doc => { dataBox.push(doc.data()) }) }
+    )   
+}
+
+window.onload = function() {
+    
+    setTimeout(() => {
+        DBget();
+    }, 1000);
+
+    setTimeout(() => {
+        console.log(dataBox)
+        for (let a of dataBox) {
+            document.querySelector(".left").innerHTML = `예정된 수행평가가 ${Object.keys(a).length}개 남았습니다.`
+            for (let event in a) {
+                addScheduledTest(a[event].subject, a[event].type, a[event].date.split('-')[1], a[event].date.split('-')[2])
+            }
+        }
+    }, 2000);
+}

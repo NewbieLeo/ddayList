@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youngnam Sahmyook Academy 3rd grade Test Scheduler</title>
+    <link rel="icon" href="titleIcon.png"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <!-- React Libraries CDN below -->
+    <script crossorigin defer src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin defer src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin defer src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+</head>
+<body>
+    <p class="title">수행평가 목록</p>
+    <p class="left"></p>
+    <div class="scheduled">
+        <!-- Here will be schedules-->
+    </div>
+    <pre class="info">오류 제보: jogangmin07@gmail.com</pre>
+    <script defer type="text/babel">
+        function getScheduleDOM() {
+            console.log(prop)
+            return ( <React.Fragment>
+                <div className="schedule">
+                    <div className="type">
+                        <p className="subject">{prop.subject}</p>
+                        <p className="name" style={{color: "gray"}}>{prop.type}</p>
+                    </div>
+                    <div className="date">
+                        <p className="day">{prop.date}</p>
+                        <h1 className="d_day" style={{color: "gray"}}>{prop.leftDays}</h1>
+                    </div>
+                </div>
+                <div className="sep"></div>
+            </React.Fragment> )
+        };
+        
+        // ReactDOM.render(schedule, document.querySelector('.scheduled'));
+
+        /* --------------------------------------------- */
+
+        var dataBox = [];
+        var finalData = [];
+        const firebaseConfig = {
+            apiKey: "AIzaSyAEuYaMf87Pq_196a2mmrFEYDhbuRbnCaA",
+            authDomain: "sahmyook-event.firebaseapp.com",
+            projectId: "sahmyook-event",
+            storageBucket: "sahmyook-event.appspot.com",
+            messagingSenderId: "29381676933",
+            appId: "1:29381676933:web:97532619c6bad4497cfeec",
+            measurementId: "G-6DTXJK77XS"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        function DBget() {
+            const db = firebase.firestore();
+            db.collection('data').get().then(
+                e => { e.forEach(doc => { dataBox.push(doc.data()) }) }
+            )   
+        }
+
+        function getDDayString(date) {
+            let dateObject = new Date();
+            let currentMonth = dateObject.getMonth() + 1;
+            let currentDay = dateObject.getDate();
+            let today = new Date(`2022-${currentMonth}-${currentDay}, 00:00:00 +0900`);
+            let testDate = new Date(`${date}, 00:00:00 +0900`)
+            let leftDays = ((testDate - today) / 86400000).toFixed();
+            return (
+                !+leftDays ? ['예정 날짜', '미정']
+                : leftDays < 0 ? ['<s>종료</s>', leftDays]
+                : leftDays == 0 ? [testDate, leftDays]
+                : leftDays <= 3 ? [testDate, leftDays] // crimson color
+                : [testDate, leftDays] );
+        }
+
+        window.onload = function() {
+            setTimeout(() => {
+                DBget();
+            }, 1000);
+
+            setTimeout(() => {
+                console.log(dataBox)
+                for (let a of dataBox) {
+                    document.querySelector(".left").innerHTML = `예정된 수행평가가 ${Object.keys(a).length}개 남았습니다.`
+                    for (let event in a) {
+                        let DDayString = getDDayString(a[event].date)
+                        var prop = {
+                            subject: a[event].subject,
+                            type: a[event].type,
+                            date: DDayString[0],
+                            leftDays: DDayString[1]
+                        };
+
+                        ReactDOM.render(getScheduleDOM(), document.querySelector('.scheduled'))
+                    }
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
