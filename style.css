@@ -10,6 +10,12 @@ body {
     margin: 6vw 0 2vw 0;
 }
 
+.warning {
+    font-family: Pretendard;
+    font-size: 1.5vw;
+    text-align: center;
+}
+
 .waiting {
     font-family: Pretendard;
     font-size: 2vw;

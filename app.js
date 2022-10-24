@@ -116,16 +116,17 @@ window.onload = function() {
     }, 100);
 
     setTimeout(() => {
+        clearInterval(load);
         console.log(dataBox)
         for (let a of dataBox) {
-            document.querySelector(".left").innerHTML = `예정된 수행평가가 ${Object.keys(a).length}개 남았습니다.`
             for (let event in a) {
                 addScheduledTest(a[event].subject, a[event].type, a[event].date.split('-')[1], a[event].date.split('-')[2])
             }
+            document.querySelector(".left").innerHTML = `예정된 수행평가가 ${Object.keys(a).length}개 남았습니다.`
         }
-        clearInterval(load);
         document.querySelector('.waiting').hidden = true;
         document.querySelector('.body:not(.waiting)').hidden = false;
+        document.querySelector('.info').hidden = false;
         console.log('level 2');
     }, 4000);
 }
