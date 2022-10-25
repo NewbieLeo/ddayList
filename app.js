@@ -45,7 +45,7 @@ function addScheduledTest (subject, method, m, d) {
     leftDays = ((testDate - today) / 86400000).toFixed();
     $day.innerHTML = `${m}/${d} (${weekDays[testDate.getDay()]})`
 
-    if (isNaN(leftDays)) {
+    if (Number.isNaN(leftDays)) {
         $d_day.innerHTML = "미정";
         $day.innerHTML = "예정 날짜";
         $d_day.style.color = "gray";
