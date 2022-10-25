@@ -119,15 +119,33 @@ window.onload = function() {
         clearInterval(load);
         console.log(dataBox)
         dataBox = dataBox.sort((id1, id2) => (+id1) - (+id2));
-        for (let a of dataBox) {
-            for (let event in a) {
-                addScheduledTest(a[event].subject, a[event].type, a[event].date.split('-')[1], a[event].date.split('-')[2])
-            }
-            document.querySelector(".left").innerHTML = `예정된 수행평가가 ${Object.keys(a).length}개 남았습니다.`
-        }
         document.querySelector('.waiting').hidden = true;
         document.querySelector('.body:not(.waiting)').hidden = false;
         document.querySelector('.info').hidden = false;
+        document.querySelector('.ended').hidden = false;
         console.log('level 2');
+        postDOM(true);
     }, 4000);
 }
+
+function postDOM(doesIncludeEnded) {
+    document.querySelector('.scheduled').innerHTML = '';
+    let a = dataBox[0];
+    let left = (() => {
+        let returnVal = {};
+        for (let i in a) {
+            let [nowTime, testTime] = [new Date(), new Date(a[i].date)];
+            if (testTime - nowTime > 0) returnVal[i] = a[i];
+        }
+        return returnVal;
+    })()
+    selectedData = doesIncludeEnded ? a : left;
+    for (let event in selectedData) {
+        addScheduledTest(a[event].subject, a[event].type, a[event].date.split('-')[1], a[event].date.split('-')[2])
+    }
+    document.querySelector(".left").innerHTML = `예정된 수행평가가 ${Object.keys(a).length}개 남았습니다.`
+}
+
+document.querySelector('#does-include-ended').addEventListener('click', () => {
+    postDOM(!document.querySelector('#does-include-ended').checked);
+})
