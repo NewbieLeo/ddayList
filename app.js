@@ -118,6 +118,7 @@ window.onload = function() {
     setTimeout(() => {
         clearInterval(load);
         console.log(dataBox)
+        dataBox = dataBox.sort((id1, id2) => (+id1) - (+id2));
         for (let a of dataBox) {
             for (let event in a) {
                 addScheduledTest(a[event].subject, a[event].type, a[event].date.split('-')[1], a[event].date.split('-')[2])
