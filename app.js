@@ -40,10 +40,10 @@ function addScheduledTest (subject, method, m, d) {
     $name.innerHTML = method;
     
     // Calcs remaining days
-    today = new Date(`2022-${currentMonth}-${currentDay}, 00:00:00 +0900`)
-    testDate = new Date(`2022-${m}-${d}, 00:00:00 +0900`)
-    leftDays = ((testDate - today) / 86400000).toFixed();
-    $day.innerHTML = `${m}/${d} (${weekDays[testDate.getDay()]})`
+    today = new Date(`2022-${currentMonth}-${currentDay}, 00:00:00 +0900`);
+    testDate = new Date(`2022-${m}-${d}, 00:00:00 +0900`);
+    leftDays = ((testDate.getTime() - today.getTime()) / 86400000).toFixed();
+    $day.innerHTML = `${+m}/${+d} (${weekDays[testDate.getDay()]})`
 
     if (Number.isNaN(leftDays)) {
         $d_day.innerHTML = "미정";
