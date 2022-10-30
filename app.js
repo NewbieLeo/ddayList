@@ -131,6 +131,7 @@ window.onload = function() {
 function postDOM(doesIncludeEnded) {
     document.querySelector('.scheduled').innerHTML = '';
     let a = dataBox[0];
+    t = [];
     let left = (() => {
         let returnVal = {};
         for (let i in a) {
@@ -140,10 +141,12 @@ function postDOM(doesIncludeEnded) {
         return returnVal;
     })()
     selectedData = doesIncludeEnded ? a : left;
-    for (let event in selectedData) {
-        addScheduledTest(a[event].subject, a[event].type, a[event].date.split('-')[1], a[event].date.split('-')[2])
+    for (let i in selectedData) t.push(selectedData[i]);
+    t = t.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    for (let event in t) {
+        addScheduledTest(t[event].subject, t[event].type, t[event].date.split('-')[1], t[event].date.split('-')[2])
     }
-    document.querySelector(".left").innerHTML = `예정된 수행평가가 ${Object.keys(a).length}개 남았습니다.`
+    document.querySelector(".left").innerHTML = `예정된 수행평가가 ${Object.keys(left).length}개 남았습니다.`
 }
 
 document.querySelector('#does-include-ended').addEventListener('click', () => {
