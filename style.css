@@ -153,3 +153,11 @@ label[for='does-include-ended'] {
     font-weight: 400;
     text-align: center;
 }
+
+.pray-for-itaewon {
+    position: absolute;
+    width: 3vh;
+    height: 3vh;
+    left: calc(100% - 5vh);
+    top: 0;
+}
